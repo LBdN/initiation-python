@@ -18,7 +18,10 @@ def create_teapot(position, rotation, radius_teapot, segs):
     return teapot_node
 
 
-def teapot_circle(radius, count, name, radius_teapot, segs):
+def teapot_circle(radius, count, name, radius_teapot, segments):
+    # If no teapots
+    if not count:
+        return
     # Distribution Angle
     distribution_angle = 2 * math.pi / count
     # Each teapot
@@ -30,11 +33,10 @@ def teapot_circle(radius, count, name, radius_teapot, segs):
         position_x = radius * math.cos(current_angle)
         position_y = radius * math.sin(current_angle)
         # New Teapot
-        new_teapot = create_teapot([position_x, position_y, 0], [0, 0, angle_z], radius_teapot, segs)
+        new_teapot = create_teapot([position_x, position_y, 0], [0, 0, angle_z], radius_teapot, segments)
         # Set Other Params
         new_teapot.SetName("{Teapot}_{index:03d}".format(
         Teapot= name,
         index=teapot_index
         ))
         new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))
-

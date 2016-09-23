@@ -59,22 +59,19 @@ class TeapotTool(maxhelper.MaxWidget):
         layout.addWidget(self.spin_segs_teapot, 6, 1)
         
         layout.addWidget(self.button, 8, 1)
-        
-              
-        
-        
+
         # Titre
         self.setWindowTitle('Teapot creator')
 
     def button_pressed(self):
     
-        count = int(self.spin_nombre.text())
-        radius = int(self.spin_rayon.text())
-        radius_teapot = int(self.spin_radius_teapot.text())
-        segs = int(self.spin_segs_teapot.text())
+        count = self.spin_nombre.value()
+        radius = self.spin_rayon.value()
+        radius_teapot = self.spin_radius_teapot.value()
+        segments = self.spin_segs_teapot.value()
         name = self.line_nom_de_base.text()
         
-        teapot.teapot_circle(radius, count, name, radius_teapot, segs)
+        teapot.teapot_circle(radius, count, name, radius_teapot, segments)
 
 
 def main():
