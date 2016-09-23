@@ -1,14 +1,11 @@
-""" MODULE PYTHON SYLVAIN DALLIET IIM"""
-""" Teapot Creation Interface """
+"""Teapot Creation Interface"""
 
 from PySide import QtGui
 import maxhelper
 import MaxPlus
 import teapot_create
 
-
-reload(maxhelper)
-reload(teapot_create)
+__author__ = "Sylvain Dalliet"
 
 
 class _GarbageCollectorProtector(object):
@@ -22,7 +19,6 @@ class Example(maxhelper.MaxWidget):
         maxhelper.MaxWidget.__init__(self)
         # Initialise les elements d'interface
         self.init_ui()
-
 
     def init_ui(self):
         # Place et taille
@@ -74,36 +70,32 @@ class Example(maxhelper.MaxWidget):
         # Title
         self.setWindowTitle('The Teapot Magic Maker')
 
-
     def button_pressed(self):
 
         # Print a sentence using all inputs        
-        print "You created a {quantity} Teapot(s) with the base name \"{name}\" with {nbr_segments} segments and a radius of {radius_value}".format(
+        print "You created a {quantity} Teapot(s) with the base name \"{name}\" "\
+              "with {nbr_segments} segments and a radius of {radius_value}".format(
             quantity=self.quantity_area.text(),
             name=self.name_area.text(),
             nbr_segments=self.segments_area.text(),
             radius_value=self.radius_area.text()
-            )
+        )
         
-        # Create X teapot
-        quantity_teapot = int(self.quantity_area.text())
-        #print quantity_teapot
-		# get teapot name
-        custom_name = self.name_area.text()
+        # Get user values
+        base_name = self.name_area.text()
+        segment_count = self.segments_area.value()
+        radius = self.radius_area.value()
+        teapot_count = self.quantity_area.value()
         # Loop Teapot Function
-        teapot_create.loop_teapot(1.0, 10, quantity_teapot, custom_name)
-
+        teapot_create.loop_teapot(radius, segment_count, teapot_count, base_name)
 
     def button_fix_pressed(self):
-        # get teapot quantity
-        quantity_teapot2 = int(self.quantity_area.text())
-        #print quantity_teapot
-		# get teapot name
-        custom_name2 = self.name_area.text()
-		# call the fix function
-        teapot_create.unique_name_fix(quantity_teapot2, custom_name2)
+        # get teapot name
+        custom_name = self.name_area.text()
+        # call the fix function
+        teapot_create.unique_name_fix(custom_name)
 
-      
+
 def main():
     # Creation d'un widget
     example = Example()
