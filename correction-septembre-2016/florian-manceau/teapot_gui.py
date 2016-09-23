@@ -4,10 +4,6 @@ import MaxPlus
 import teapot
 
 
-reload(maxhelper)
-reload(teapot)
-
-
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
 
@@ -26,34 +22,34 @@ class TeapotTool(maxhelper.MaxWidget):
         layout = QtGui.QGridLayout(self)
   
         # Line
-        self.name = QtGui.QLineEdit("Teapot_")
+        self.lineedit_name = QtGui.QLineEdit("Teapot_")
         self.label_name = QtGui.QLabel("Nom de base :")
-        layout.addWidget(self.label_name, 0, 0)        
-        layout.addWidget(self.name, 0, 1)   
+        layout.addWidget(self.label_name, 0, 0)
+        layout.addWidget(self.lineedit_name, 0, 1)
         
         # Rayon teapot
-        self.radius = QtGui.QSpinBox()
-        self.label_radius = QtGui.QLabel("Rayon :")     
-        layout.addWidget(self.label_radius, 1, 0)        
-        layout.addWidget(self.radius, 1, 1)
+        self.spinner_radius = QtGui.QSpinBox()
+        self.label_radius = QtGui.QLabel("Rayon :")
+        layout.addWidget(self.label_radius, 1, 0)
+        layout.addWidget(self.spinner_radius, 1, 1)
         
         # Segments teapot
-        self.segment = QtGui.QSpinBox()
-        self.label_segment = QtGui.QLabel("Segments :")   
-        layout.addWidget(self.label_segment, 2, 0)        
-        layout.addWidget(self.segment, 2, 1)
+        self.spinner_segment = QtGui.QSpinBox()
+        self.label_segment = QtGui.QLabel("Segments :")
+        layout.addWidget(self.label_segment, 2, 0)
+        layout.addWidget(self.spinner_segment, 2, 1)
         
         # nombre teapot
-        self.number = QtGui.QSpinBox()
-        self.label_number = QtGui.QLabel("Nombres :")        
-        layout.addWidget(self.label_number, 3, 0)        
-        layout.addWidget(self.number, 3, 1)     
+        self.spinner_count = QtGui.QSpinBox()
+        self.label_count = QtGui.QLabel("Nombres :")
+        layout.addWidget(self.label_count, 3, 0)
+        layout.addWidget(self.spinner_count, 3, 1)
         
         # Rayon cercle
-        self.radius_circle = QtGui.QSpinBox()
-        self.label_circle = QtGui.QLabel("Rayon cercle :")        
-        layout.addWidget(self.label_circle, 4, 0)        
-        layout.addWidget(self.radius_circle, 4, 1)
+        self.spinner_circle_radius = QtGui.QSpinBox()
+        self.label_circle_radius = QtGui.QLabel("Rayon cercle :")
+        layout.addWidget(self.label_circle_radius, 4, 0)
+        layout.addWidget(self.spinner_circle_radius, 4, 1)
         
         # Button
         self.button = QtGui.QPushButton("Create")
@@ -63,14 +59,13 @@ class TeapotTool(maxhelper.MaxWidget):
         # Titre
         self.setWindowTitle('Teapot Tool')
         
-        
     def button_pressed(self):
         # Create geometry
-        radius = int(self.radius.text())
-        segment = int(self.segment.text())
-        nombre = int(self.number.text())
-        rayon_cercle = int(self.radius_circle.text())   
-        name = self.name.text()
+        radius = self.spinner_radius.value()
+        segment = self.spinner_segment.value()
+        nombre = self.spinner_count.value()
+        rayon_cercle = self.spinner_circle_radius.value()
+        name = self.lineedit_name.text()
         
         # Create teapot Circle 
         teapot.teapot_circle(radius, segment, rayon_cercle, nombre, name)
