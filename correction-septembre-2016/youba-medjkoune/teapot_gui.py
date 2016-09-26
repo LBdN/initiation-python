@@ -3,16 +3,13 @@ import maxhelper
 import MaxPlus
 import teapot
 
-reload(teapot)
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
 
 
 class TeapotTool(maxhelper.MaxWidget):
-
     def __init__(self):
-
         # Initialise Classe Parente
         maxhelper.MaxWidget.__init__(self)
         # Initialise les elements d'interface
@@ -28,46 +25,41 @@ class TeapotTool(maxhelper.MaxWidget):
         self.radius = QtGui.QLabel('Radius')
         
         # Lignes et Spinbox
-        self.nomEdit = QtGui.QLineEdit()
-        self.nombreEdit = QtGui.QLineEdit()
-        self.nombreEdit = QtGui.QSpinBox()
-        self.radiusEdit = QtGui.QLineEdit()
-        self.radiusEdit = QtGui.QSpinBox()
+        self.nom_edit = QtGui.QLineEdit()
+        self.nombre_edit = QtGui.QSpinBox()
+        self.radius_edit = QtGui.QSpinBox()
         
         # Layout
         grid = QtGui.QGridLayout()
         grid.setSpacing(10)
 
         grid.addWidget(self.nom, 1, 0)
-        grid.addWidget(self.nomEdit, 1, 2)
+        grid.addWidget(self.nom_edit, 1, 2)
 
         grid.addWidget(self.nombre, 2, 0)
-        grid.addWidget(self.nombreEdit, 2, 2)
+        grid.addWidget(self.nombre_edit, 2, 2)
 
         grid.addWidget(self.radius, 3, 0)
-        grid.addWidget(self.radiusEdit, 3, 2)
+        grid.addWidget(self.radius_edit, 3, 2)
         
         self.setLayout(grid) 
-         
-        self.show()
         
         # Bouton
         self.button = QtGui.QPushButton("WHO LET THE POTS OUT")
         grid.addWidget(self.button, 4, 2, 2)
         self.button.pressed.connect(self.button_pressed)
 
-
-
         # Titre fenetre
         self.setWindowTitle('Teapot Tool')
         
 
     def button_pressed(self):
-        radius = int(self.radiusEdit.text())
-        count = int(self.nombreEdit.text())
-        name = self.nomEdit.text()
+        radius = self.radius_edit.value()
+        count = self.nombre_edit.value()
+        name = self.nom_edit.text()
         
         teapot.teapot_circle(radius, count, name)
+
 
 def main():
     # Creation du widget
