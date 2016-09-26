@@ -3,7 +3,6 @@ import maxhelper
 import MaxPlus
 import teapot
 
-reload(teapot)
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
@@ -11,7 +10,6 @@ class _GarbageCollectorProtector(object):
     
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
-
     
 
 class TeapotTool(maxhelper.MaxWidget):
@@ -34,23 +32,21 @@ class TeapotTool(maxhelper.MaxWidget):
         self.nombre = QtGui.QLabel('Nombre :', self)
         self.rayon = QtGui.QLabel('Rayon :', self)
 
-        self.titleEdit = QtGui.QLineEdit()
-        self.authorEdit = QtGui.QLineEdit()
-        self.authorEdit = QtGui.QSpinBox()
-        self.reviewEdit = QtGui.QLineEdit()
-        self.reviewEdit = QtGui.QSpinBox()
+        self.title_edit = QtGui.QLineEdit()
+        self.author_edit = QtGui.QSpinBox()
+        self.review_edit = QtGui.QSpinBox()
 
         grid = QtGui.QGridLayout()
         grid.setSpacing(10)
 
         grid.addWidget(self.nom, 1, 0)
-        grid.addWidget(self.titleEdit, 1, 1)
+        grid.addWidget(self.title_edit, 1, 1)
 
         grid.addWidget(self.nombre, 2, 0)
-        grid.addWidget(self.authorEdit, 2, 1)
+        grid.addWidget(self.author_edit, 2, 1)
 
         grid.addWidget(self.rayon, 3, 0)
-        grid.addWidget(self.reviewEdit, 3, 1)
+        grid.addWidget(self.review_edit, 3, 1)
         
         self.setLayout(grid) 
       
@@ -67,9 +63,9 @@ class TeapotTool(maxhelper.MaxWidget):
         self.setWindowTitle('TEAPOT GENERATOR')
 
     def button_pressed(self):
-        radius = int(self.reviewEdit.text())
-        count = int(self.authorEdit.text())
-        name = self.titleEdit.text()
+        radius = self.review_edit.value()
+        count = self.author_edit.value()
+        name = self.title_edit.text()
         
         teapot.teapot_circle(radius, count, name)
 
