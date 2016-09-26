@@ -4,9 +4,6 @@ import maxhelper
 import math
 import teapot_generator
 
-reload(maxhelper)
-reload(teapot_generator)
-
 
 class _GarbageCollectorProtector(object):
 	protected_widgets = list()
@@ -38,8 +35,6 @@ class Example(maxhelper.MaxWidget):
 		self.rayon.setMaximum(999999)
 		self.label_rayon = QtGui.QLabel("Rayon :")
 		
-		self.show()
-		
 		# Button
 		self.button = QtGui.QPushButton("BIM !", parent=self)
 		self.button.pressed.connect(self.button_pressed)
@@ -67,11 +62,6 @@ class Example(maxhelper.MaxWidget):
 		
 		teapot_generator.teapot_circle(radius, count, name)
 		
-
-
-
-
-
 
 def main():
 	# Creation d'un widget
