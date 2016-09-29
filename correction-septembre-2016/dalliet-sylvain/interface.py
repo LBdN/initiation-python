@@ -1,19 +1,18 @@
-"""Teapot Creation Interface"""
+""" MODULE PYTHON SYLVAIN DALLIET IIM
+Teapot Creation Interface """
 
 from PySide import QtGui
 import maxhelper
 import MaxPlus
 import teapot_create
 
-__author__ = "Sylvain Dalliet"
+__author__= "SYLVAIN DALLIET"
 
-
-class _GarbageCollectorProtector(object):
+class _GarbageCollectorProtector(object):    
     protected_widgets = list()
 
 
 class Example(maxhelper.MaxWidget):
-
     def __init__(self):
         # Initialise Classe Parente
         maxhelper.MaxWidget.__init__(self)
@@ -31,7 +30,7 @@ class Example(maxhelper.MaxWidget):
         # Segments Area
         self.segments_area_label = QtGui.QLabel('Nbr. Segments :')
         self.segments_area = QtGui.QSpinBox()
-        self.segments_area.setMinimum(1)
+        self.segments_area.setMinimum(10)
         
         # Radius Area
         self.radius_area_label = QtGui.QLabel('Radius :')
@@ -44,7 +43,15 @@ class Example(maxhelper.MaxWidget):
         # Quantity Area
         self.quantity_area_label = QtGui.QLabel('Nbr. Teapot :')
         self.quantity_area = QtGui.QSpinBox()
-        self.quantity_area.setMinimum(1)
+        self.quantity_area.setMinimum(5)
+
+        # Circle Radius Area
+        self.circle_radius_area_label = QtGui.QLabel('Circle Radius :')
+        self.circle_radius_area = QtGui.QDoubleSpinBox()
+        self.circle_radius_area.setMinimum(20)
+        self.circle_radius_area.setDecimals(2)
+        self.circle_radius_area.setSingleStep(0.01)
+        self.circle_radius_area.setAccelerated(True)
         
         # Button creation
         self.button = QtGui.QPushButton("Shazam")
@@ -53,6 +60,10 @@ class Example(maxhelper.MaxWidget):
         # Button fix unique name and some fun
         self.button_fix = QtGui.QPushButton("Fix unique name")
         self.button_fix.pressed.connect(self.button_fix_pressed)
+
+        # Button fix unique name and some fun
+        self.button_circle = QtGui.QPushButton("Running Circles")
+        self.button_circle.pressed.connect(self.button_circle_pressed)
 
         # Layout
         layout = QtGui.QGridLayout(self)
@@ -64,38 +75,49 @@ class Example(maxhelper.MaxWidget):
         layout.addWidget(self.radius_area, 2, 1)
         layout.addWidget(self.quantity_area_label, 3, 0)
         layout.addWidget(self.quantity_area, 3, 1)
-        layout.addWidget(self.button, 4, 2)
-        layout.addWidget(self.button_fix, 5, 2)
+        layout.addWidget(self.circle_radius_area_label, 4, 0)
+        layout.addWidget(self.circle_radius_area, 4, 1)
+        layout.addWidget(self.button, 5, 2)
+        layout.addWidget(self.button_fix, 6, 2)
+        layout.addWidget(self.button_circle, 7, 2)
 
         # Title
         self.setWindowTitle('The Teapot Magic Maker')
 
-    def button_pressed(self):
 
+    def button_pressed(self):
         # Print a sentence using all inputs        
-        print "You created a {quantity} Teapot(s) with the base name \"{name}\" "\
-              "with {nbr_segments} segments and a radius of {radius_value}".format(
-            quantity=self.quantity_area.text(),
-            name=self.name_area.text(),
-            nbr_segments=self.segments_area.text(),
-            radius_value=self.radius_area.text()
-        )
-        
+        print "You created {quantity} Teapot(s) with the base name \"{name}\" " \
+        "with {nbr_segments} segments and " \
+        "a radius of {radius_value}".format(
+                quantity=self.quantity_area.text(),
+                name=self.name_area.text(),
+                nbr_segments=self.segments_area.text(),
+                radius_value=self.radius_area.text()
+            )
+
         # Get user values
-        base_name = self.name_area.text()
-        segment_count = self.segments_area.value()
-        radius = self.radius_area.value()
-        teapot_count = self.quantity_area.value()
+        quantity = self.quantity_area.value()
+        name = self.name_area.text()
+        radius_value = self.radius_area.value()
+        nbr_segments = self.segments_area.value()
+        circle_radius_value = self.circle_radius_area.value()        
+        
         # Loop Teapot Function
-        teapot_create.loop_teapot(radius, segment_count, teapot_count, base_name)
+        teapot_create.loop_teapot(radius_value, nbr_segments, quantity, name)
 
     def button_fix_pressed(self):
-        # get teapot name
-        custom_name = self.name_area.text()
-        # call the fix function
-        teapot_create.unique_name_fix(custom_name)
+	# call the fix function
+	name = self.name_area.text()
+        teapot_create.unique_name_fix(name)
 
-
+    def button_circle_pressed(self):
+        # call the circle distribution function
+        name = self.name_area.text()
+        quantity = self.quantity_area.value()
+        circle_radius_value = self.circle_radius_area.value()   
+        teapot_create.teapot_circle(circle_radius_value, name)
+      
 def main():
     # Creation d'un widget
     example = Example()
