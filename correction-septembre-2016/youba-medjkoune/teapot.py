@@ -33,7 +33,7 @@ def teapot_circle(radius, count, name):
         new_teapot = create_teapot([position_x, position_y, 0], [0, 0, angle_z])
         # Set Other Params
         new_teapot.SetName("{Teapot}{index:03d}".format(
-        index=teapot_index,
-        Teapot=name
+            index=teapot_index,
+            Teapot=name
         ))
         new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))

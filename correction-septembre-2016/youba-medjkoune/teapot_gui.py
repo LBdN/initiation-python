@@ -1,6 +1,5 @@
 from PySide import QtGui
 import maxhelper
-import MaxPlus
 import teapot
 
 
