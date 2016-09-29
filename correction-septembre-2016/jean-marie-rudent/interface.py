@@ -1,10 +1,6 @@
 from PySide import QtGui
 import maxhelper
-import MaxPlus
 import teapot
-
-reload(maxhelper)
-reload(teapot)
 
 
 class _GarbageCollectorProtector(object):
@@ -19,14 +15,14 @@ class Round(maxhelper.MaxWidget):
 
 
     def init_ui(self):
-        # On donne a géométrie de l'inerface
+        # On donne a geometrie de l'interface
         self.setGeometry(300, 300, 450, 200)
         
         # L'input du nom
         self.name_label = QtGui.QLabel('Name : ')
         self.name = QtGui.QLineEdit('Teapot')
 
-        # L'input du diamètre
+        # L'input du diametre
         self.diameter_label = QtGui.QLabel('Diameter :')
         self.diameter = QtGui.QSpinBox()
         self.diameter.setMinimum(5)
@@ -38,12 +34,12 @@ class Round(maxhelper.MaxWidget):
         self.radius.setDecimals(3)
         self.radius.setSingleStep(0.01)
 
-        # L'input de la quantité
+        # L'input de la quantite
         self.quantity_label = QtGui.QLabel('Number :')
         self.quantity = QtGui.QSpinBox()
         self.quantity.setMinimum(8)
         
-        # On créé le fameux bouton BIMM
+        # On cree le fameux bouton BIMM
         self.button = QtGui.QPushButton("BIMMM")
         self.button.pressed.connect(self.button_pressed)
 
@@ -59,7 +55,7 @@ class Round(maxhelper.MaxWidget):
         layout.addWidget(self.quantity, 3, 1)
         layout.addWidget(self.button, 4, 2)
 
-        # On donne un titre à l'interface
+        # On donne un titre a l'interface
         self.setWindowTitle('L\'interface des familles')
 
     def button_pressed(self):
@@ -70,7 +66,7 @@ class Round(maxhelper.MaxWidget):
         name_teapot = self.name.text()
         
         # Create number of teapot
-        teapot.teapot_circle(radius, diameter, count)
+        teapot.teapot_circle(radius, diameter, count, name)
       
 def main():
     # Creation d'un widget
