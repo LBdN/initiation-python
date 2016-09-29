@@ -1,7 +1,5 @@
 from PySide import QtGui
-import MaxPlus
 import maxhelper
-import math
 import teapot_generator
 
 
@@ -57,8 +55,8 @@ class Example(maxhelper.MaxWidget):
 
 	def button_pressed(self):
 		name = self.nom_de_base.text()
-		count = int(self.nombre.text())
-		radius = int(self.rayon.text())
+		count = self.nombre.value()
+		radius = self.rayon.value()
 		
 		teapot_generator.teapot_circle(radius, count, name)
 		
@@ -73,4 +71,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+	main()

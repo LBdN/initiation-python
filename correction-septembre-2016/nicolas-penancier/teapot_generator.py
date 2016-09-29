@@ -36,4 +36,4 @@ def teapot_circle(radius, count, name):
             Teapot_name= name,
             index=teapot_index
 		))
-        new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))
+		new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))
