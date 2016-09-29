@@ -2,7 +2,6 @@ import MaxPlus
 import math
 
 
-
 def create_teapot(position, rotation):
 	# Create Geometry
 	teapot_geometry = MaxPlus.Factory.CreateGeomObject(MaxPlus.ClassIds.Teapot)
@@ -17,6 +16,7 @@ def create_teapot(position, rotation):
 	teapot_node.Rotation = rotation_quat
 	# Return
 	return teapot_node
+
 
 def teapot_circle(radius, count, name):
 	# Distribution Angle
@@ -33,8 +33,7 @@ def teapot_circle(radius, count, name):
 		new_teapot = create_teapot([position_x, position_y, 0], [0, 0, angle_z])
 		# Set Other Params color
 		new_teapot.SetName("{Teapot_name}_{index:03d}".format(
-		Teapot_name= name,
-		index=teapot_index
+			Teapot_name= name,
+			index=teapot_index
 		))
-        new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))
-
+		new_teapot.SetWireColor(MaxPlus.Color(255 / count * teapot_index))
