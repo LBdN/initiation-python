@@ -1,12 +1,9 @@
-""" MODULE PYTHON SYLVAIN DALLIET IIM
-Teapot Creation Interface """
-
 from PySide import QtGui
 import maxhelper
-import MaxPlus
 import teapot_create
 
 __author__= "SYLVAIN DALLIET"
+
 
 class _GarbageCollectorProtector(object):    
     protected_widgets = list()
@@ -107,15 +104,14 @@ class Example(maxhelper.MaxWidget):
         teapot_create.loop_teapot(radius_value, nbr_segments, quantity, name)
 
     def button_fix_pressed(self):
-	# call the fix function
-	name = self.name_area.text()
+        # call the fix function
+        name = self.name_area.text()
         teapot_create.unique_name_fix(name)
 
     def button_circle_pressed(self):
         # call the circle distribution function
         name = self.name_area.text()
-        quantity = self.quantity_area.value()
-        circle_radius_value = self.circle_radius_area.value()   
+        circle_radius_value = self.circle_radius_area.value()
         teapot_create.teapot_circle(circle_radius_value, name)
       
 def main():

@@ -1,11 +1,9 @@
-""" MODULE PYTHON SYLVAIN DALLIT IIM
-Teapot Creation Functions """
-
 __author__ = "SYLVAIN DALLIET"
 
 import MaxPlus
 import math
 import random
+
 
 def make_teapot(rad, seg, pos):
     # node geometry parameters
@@ -69,6 +67,7 @@ def unique_name_fix(the_name):
         rotation_quat = MaxPlus.Quat()
         rotation_quat.SetEuler(0, 0, rand_rotation_value)
         obj_checked.Rotation = rotation_quat
+
 
 def teapot_circle(radius, the_name):
     # get all geometry in the scene
