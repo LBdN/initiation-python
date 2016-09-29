@@ -1,16 +1,11 @@
-# INTERFACE DE CREATION DE TEAPOT
-#################################
-# par NGUYEN Phan-Dung Celine
-
 from PySide import QtGui
-import MaxPlus
 import maxhelper
 import teapot
 
-reload (teapot)
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
+
 
 class TeapotTool(maxhelper.MaxWidget):
 
@@ -27,15 +22,15 @@ class TeapotTool(maxhelper.MaxWidget):
         self.setWindowTitle('Let\'s create a teapot')
         
         # PARAMETERS
-            # Nom de l'objet
+        # Nom de l'objet
         self.label_nom_base = QtGui.QLabel("Nom de base :")
         self.line_nom_base = QtGui.QLineEdit(parent=self)
-            # Nombre de teapots
+        # Nombre de teapots
         self.label_nombre = QtGui.QLabel("Nombre :")
         self.line_nombre = QtGui.QSpinBox(parent=self)
         self.line_nombre.setMaximum(200)
         self.line_nombre.setMinimum(1)
-            # Rayon du cercle
+        # Rayon du cercle
         self.label_rayon_cercle = QtGui.QLabel("Rayon du cercle :")
         self.line_rayon_cercle = QtGui.QSpinBox(parent=self)
         
@@ -45,16 +40,16 @@ class TeapotTool(maxhelper.MaxWidget):
         
         # LAYOUT
         layout = QtGui.QGridLayout(self)
-            # Nom de base
+        # Nom de base
         layout.addWidget(self.label_nom_base, 0, 0)
         layout.addWidget(self.line_nom_base, 0, 1)
-            # Nombre de teapots
+        # Nombre de teapots
         layout.addWidget(self.label_nombre, 1, 0)
         layout.addWidget(self.line_nombre, 1, 1)
-            # Rayon du cercle
+        # Rayon du cercle
         layout.addWidget(self.label_rayon_cercle, 2, 0)
         layout.addWidget(self.line_rayon_cercle, 2, 1)
-            # Bouton
+        # Bouton
         layout.addWidget(self.button, 3, 1)
 
     def button_pressed(self):
@@ -62,7 +57,8 @@ class TeapotTool(maxhelper.MaxWidget):
         count=self.line_nombre.value()
         name=self.line_nom_base.text()
         teapot.teapot_circle(radius, count, name)
-        
+
+
 def main():
     # Creation du widget
     teapot_tool = TeapotTool()

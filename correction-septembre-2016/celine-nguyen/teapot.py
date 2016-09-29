@@ -1,9 +1,6 @@
-# CREATION DE TEAPOT
-####################
-# par NGUYEN Phan-Dung Celine
-
 import MaxPlus
 import math
+
 
 def create_teapot(position, rotation):
     # Create geometry
