@@ -2,8 +2,6 @@ from PySide import QtGui
 import maxhelper
 import teapot
 
-reload (teapot)
-
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
@@ -40,7 +38,6 @@ class TeapotTool(maxhelper.MaxWidget):
         # Ligne Titre
         self.setWindowTitle('Coucou Valentin !')
 
-        
         # LAYOUT :    
         layout = QtGui.QGridLayout(self)
         
@@ -65,7 +62,8 @@ class TeapotTool(maxhelper.MaxWidget):
         radius = self.line_rayon.value()
         
         teapot.teapot_circle(name, count, radius)
-        
+
+
 def main():
     # Creation du widget
     teapot_tool = TeapotTool()
