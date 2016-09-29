@@ -1,18 +1,11 @@
 from PySide import QtGui
 import maxhelper
-import MaxPlus
 import teapot
 
-reload(teapot)
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
 
-    
-class _GarbageCollectorProtector(object):
-    protected_widgets = list()
-
-    
 
 class TeapotTool(maxhelper.MaxWidget):
 
@@ -60,18 +53,17 @@ class TeapotTool(maxhelper.MaxWidget):
         self.button.pressed.connect(self.button_pressed)
         
         grid.addWidget(self.button, 4, 1, 2)
-        
-        self.show()
 
         # Titre
         self.setWindowTitle('TEAPOT GENERATOR')
 
     def button_pressed(self):
-        radius = int(self.rayonEdit.text())
-        count = int(self.nombreEdit.text())
+        radius = self.rayonEdit.value()
+        count = self.nombreEdit.value()
         name = self.nomEdit.text()
         
         teapot.teapot_circle(radius, count, name)
+
 
 def main():
     # Creation du widget
