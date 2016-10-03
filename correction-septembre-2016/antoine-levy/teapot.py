@@ -1,6 +1,7 @@
 import MaxPlus
 import math
 
+
 def create_teapot(position, rotation):
     # Create Geometry
     teapot_geometry = MaxPlus.Factory.CreateGeomObject(MaxPlus.ClassIds.Teapot)
