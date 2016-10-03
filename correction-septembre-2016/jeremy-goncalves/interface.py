@@ -1,20 +1,15 @@
 from PySide import QtGui
 import maxhelper
-import MaxPlus
 import teapot
 
-reload(maxhelper)
-reload(teapot)
 
 class _GarbageCollectorProtector(object):
     protected_widgets = list()
 
-	
 
 class Example(maxhelper.MaxWidget):
-
     def __init__(self):
-		# initialisation des elements
+        # initialisation des elements
         maxhelper.MaxWidget.__init__(self)
         self.init_ui()
 
@@ -25,7 +20,7 @@ class Example(maxhelper.MaxWidget):
         
         # set du nom de l'objet
         self.name_label = QtGui.QLabel('Name : ')
-		# preset du nom en teapot
+        # preset du nom en teapot
         self.name = QtGui.QLineEdit('Teapot')
 
         # Radius
@@ -55,15 +50,14 @@ class Example(maxhelper.MaxWidget):
         self.setWindowTitle('Creation de teapot automatique')
 
     def button_pressed(self):      
-	
-        count = int(self.count.text())
+        count = self.count.value()
         name = self.name.text()
-	radius = int(self.radius.text())
+        radius = self.radius.value()
 		
         teapot.teapot_circle(radius, count, name)
-		
-def main():
 
+
+def main():
     example = Example()
     _GarbageCollectorProtector.protected_widgets.append(example)
     example.show()
